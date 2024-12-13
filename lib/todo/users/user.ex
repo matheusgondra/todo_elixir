@@ -3,6 +3,8 @@ defmodule Todo.Users.User do
 
   import Ecto.Changeset
 
+  alias Todo.Tasks.Task
+
   @primary_key {:id, :binary_id, autogenerate: true}
 
   @required_fields [:name, :email, :password]
@@ -13,6 +15,7 @@ defmodule Todo.Users.User do
           email: String.t(),
           password: String.t(),
           hashed_password: String.t(),
+          tasks: list(Task.t()),
           created_at: NaiveDateTime.t(),
           updated_at: NaiveDateTime.t()
         }
@@ -22,6 +25,8 @@ defmodule Todo.Users.User do
     field :email, :string
     field :password, :string, virtual: true
     field :hashed_password, :string, source: :password
+
+    has_many :tasks, Task
 
     timestamps(inserted_at: :created_at)
   end
