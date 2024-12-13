@@ -76,9 +76,82 @@
       ],
       "title": "UserParams",
       "type": "object"
+    },
+    "SignIn": {
+      "description": "Sign in a user",
+      "example": {
+        "access_token": "token"
+      },
+      "properties": {
+        "access_token": {
+          "description": "Access token",
+          "type": "string"
+        }
+      },
+      "title": "SignIn",
+      "type": "object"
+    },
+    "SignInParams": {
+      "description": "Sign in parameters",
+      "example": {
+        "email": "johndoe@mail.com",
+        "password": "password"
+      },
+      "properties": {
+        "email": {
+          "description": "User email",
+          "format": "email",
+          "type": "string"
+        },
+        "password": {
+          "description": "User password",
+          "type": "string"
+        }
+      },
+      "required": [
+        "password",
+        "email"
+      ],
+      "title": "SignInParams",
+      "type": "object"
     }
   },
   "paths": {
+    "/signin": {
+      "post": {
+        "description": "Sign in a user",
+        "operationId": "TodoWeb.Auth.SignInController.handle",
+        "parameters": [
+          {
+            "description": "User credentials",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SignInParams"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User signed in",
+            "schema": {
+              "$ref": "#/definitions/SignIn"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Auth"
+        ]
+      }
+    },
     "/signup": {
       "post": {
         "description": "Sign up a new user",
