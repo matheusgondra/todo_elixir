@@ -12,6 +12,18 @@ defmodule TodoWeb.Router do
     post "/signin", SignInController, :handle
   end
 
+  def swagger_info do
+    %{
+      info: %{
+        version: "1.0",
+        title: "TODO API"
+      },
+      basePath: "/api",
+      consumes: ["application/json"],
+      produces: ["application/json"]
+    }
+  end
+
   # Enable LiveDashboard in development
   if Application.compile_env(:todo, :dev_routes) do
     # If you want to use the LiveDashboard in production, you should put

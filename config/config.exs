@@ -19,6 +19,16 @@ config :todo, TodoWeb.Auth.Guardian,
   issuer: "todo_app",
   secret_key: System.get_env("JWT_SECRET_KEY", "secret")
 
+config :todo, :phoenix_swagger,
+  swagger_files: %{
+    "priv/static/swagger.json" => [
+      router: TodoWeb.Router,
+      endpoint: TodoWeb.Endpoint
+    ]
+  }
+
+config :phoenix_swagger, json_library: Jason
+
 # Configures the endpoint
 config :todo, TodoWeb.Endpoint,
   url: [host: "localhost"],
