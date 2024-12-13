@@ -10,6 +10,7 @@ defmodule TodoWeb.Auth.SignInController do
 
   swagger_path :handle do
     post("/signin")
+    summary("Sign in a user")
     description("Sign in a user")
     tag("Auth")
 

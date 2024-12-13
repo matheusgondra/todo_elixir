@@ -11,6 +11,7 @@ defmodule TodoWeb.Auth.SignUpController do
 
   swagger_path :handle do
     post("/signup")
+    summary("Sign up a new user")
     description("Sign up a new user")
     tag("Auth")
 
