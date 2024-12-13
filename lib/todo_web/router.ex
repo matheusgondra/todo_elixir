@@ -1,6 +1,8 @@
 defmodule TodoWeb.Router do
   use TodoWeb, :router
 
+  alias TodoWeb.Swagger.SchemaDefinitions
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -12,6 +14,12 @@ defmodule TodoWeb.Router do
     post "/signin", SignInController, :handle
   end
 
+  scope "/docs" do
+    forward "/", PhoenixSwagger.Plug.SwaggerUI,
+      otp_app: :todo,
+      swagger_file: "swagger.json"
+  end
+
   def swagger_info do
     %{
       info: %{
@@ -20,7 +28,8 @@ defmodule TodoWeb.Router do
       },
       basePath: "/api",
       consumes: ["application/json"],
-      produces: ["application/json"]
+      produces: ["application/json"],
+      definitions: SchemaDefinitions.definitions()
     }
   end
 
