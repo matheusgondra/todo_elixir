@@ -19,6 +19,44 @@
       "title": "ErrorResponse",
       "type": "object"
     },
+    "SignIn": {
+      "description": "Sign in a user",
+      "example": {
+        "access_token": "token"
+      },
+      "properties": {
+        "access_token": {
+          "description": "Access token",
+          "type": "string"
+        }
+      },
+      "title": "SignIn",
+      "type": "object"
+    },
+    "SignInParams": {
+      "description": "Sign in parameters",
+      "example": {
+        "email": "johndoe@mail.com",
+        "password": "password"
+      },
+      "properties": {
+        "email": {
+          "description": "User email",
+          "format": "email",
+          "type": "string"
+        },
+        "password": {
+          "description": "User password",
+          "type": "string"
+        }
+      },
+      "required": [
+        "password",
+        "email"
+      ],
+      "title": "SignInParams",
+      "type": "object"
+    },
     "User": {
       "description": "A user of the application",
       "example": {
@@ -51,44 +89,6 @@
         }
       },
       "title": "User",
-      "type": "object"
-    },
-    "SignInParams": {
-      "description": "Sign in parameters",
-      "example": {
-        "email": "johndoe@mail.com",
-        "password": "password"
-      },
-      "properties": {
-        "email": {
-          "description": "User email",
-          "format": "email",
-          "type": "string"
-        },
-        "password": {
-          "description": "User password",
-          "type": "string"
-        }
-      },
-      "required": [
-        "password",
-        "email"
-      ],
-      "title": "SignInParams",
-      "type": "object"
-    },
-    "SignIn": {
-      "description": "Sign in a user",
-      "example": {
-        "access_token": "token"
-      },
-      "properties": {
-        "access_token": {
-          "description": "Access token",
-          "type": "string"
-        }
-      },
-      "title": "SignIn",
       "type": "object"
     },
     "UserParams": {
@@ -188,12 +188,12 @@
       }
     }
   },
+  "swagger": "2.0",
+  "basePath": "/api",
   "consumes": [
     "application/json"
   ],
   "produces": [
     "application/json"
-  ],
-  "basePath": "/api",
-  "swagger": "2.0"
+  ]
 }
