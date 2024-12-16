@@ -29,4 +29,11 @@ defmodule Todo.Factory do
       "password" => "any_password"
     }
   end
+
+  def task_params_factory do
+    %{
+      "title" => "any_title",
+      "user_id" => Ecto.UUID.generate()
+    }
+  end
 end

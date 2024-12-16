@@ -53,44 +53,6 @@
       "title": "User",
       "type": "object"
     },
-    "UserParams": {
-      "description": "Parameters for creating a user",
-      "properties": {
-        "email": {
-          "description": "User email address",
-          "type": "string"
-        },
-        "name": {
-          "description": "User name",
-          "type": "string"
-        },
-        "password": {
-          "description": "User password",
-          "type": "string"
-        }
-      },
-      "required": [
-        "password",
-        "email",
-        "name"
-      ],
-      "title": "UserParams",
-      "type": "object"
-    },
-    "SignIn": {
-      "description": "Sign in a user",
-      "example": {
-        "access_token": "token"
-      },
-      "properties": {
-        "access_token": {
-          "description": "Access token",
-          "type": "string"
-        }
-      },
-      "title": "SignIn",
-      "type": "object"
-    },
     "SignInParams": {
       "description": "Sign in parameters",
       "example": {
@@ -113,6 +75,44 @@
         "email"
       ],
       "title": "SignInParams",
+      "type": "object"
+    },
+    "SignIn": {
+      "description": "Sign in a user",
+      "example": {
+        "access_token": "token"
+      },
+      "properties": {
+        "access_token": {
+          "description": "Access token",
+          "type": "string"
+        }
+      },
+      "title": "SignIn",
+      "type": "object"
+    },
+    "UserParams": {
+      "description": "Parameters for creating a user",
+      "properties": {
+        "email": {
+          "description": "User email address",
+          "type": "string"
+        },
+        "name": {
+          "description": "User name",
+          "type": "string"
+        },
+        "password": {
+          "description": "User password",
+          "type": "string"
+        }
+      },
+      "required": [
+        "password",
+        "email",
+        "name"
+      ],
+      "title": "UserParams",
       "type": "object"
     }
   },
@@ -188,12 +188,12 @@
       }
     }
   },
-  "swagger": "2.0",
   "consumes": [
     "application/json"
   ],
   "produces": [
     "application/json"
   ],
-  "basePath": "/api"
+  "basePath": "/api",
+  "swagger": "2.0"
 }
