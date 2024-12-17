@@ -20,6 +20,8 @@ config :todo, TodoWeb.Endpoint,
   secret_key_base: "nU32wW+DcXLgCW3AqIpdUy5k2Ym7DEbyXlLo/zfwxm4sUxog81/7uuk2WLnJWCqM",
   server: false
 
+config :todo, TodoWeb.Auth.Guardian, secret_key: "secret"
+
 # Print only warnings and errors during test
 config :logger, level: :warning
 
