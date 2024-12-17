@@ -8,6 +8,7 @@ defmodule Todo do
   """
   alias Todo.Error
   alias Todo.Tasks.Create, as: CreateTask
+  alias Todo.Tasks.GetByPage
   alias Todo.Users.Create, as: UserCreate
   alias Todo.Users.User
   alias TodoWeb.Auth.Guardian
@@ -20,4 +21,7 @@ defmodule Todo do
 
   @spec create_task(map()) :: {:ok, Task.t()} | {:error, Error.t()}
   defdelegate create_task(params), to: CreateTask, as: :call
+
+  @spec list_tasks(pos_integer(), pos_integer()) :: list(Task.t())
+  defdelegate list_tasks(page, pige_size), to: GetByPage, as: :call
 end

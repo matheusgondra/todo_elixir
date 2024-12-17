@@ -31,3 +31,6 @@ Authorization: {{token}}
 	"title": "Task 1"
 }
 ###
+
+GET {{base_url}}/tasks?page=1
+Authorization: {{token}}

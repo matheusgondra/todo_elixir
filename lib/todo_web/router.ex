@@ -18,10 +18,11 @@ defmodule TodoWeb.Router do
     post "/signin", SignInController, :handle
   end
 
-  scope "/api", TodoWeb do
+  scope "/api", TodoWeb.Task do
     pipe_through [:api, :auth]
 
-    post "/tasks", Task.AddTaskController, :handle
+    post "/tasks", AddTaskController, :handle
+    get "/tasks", ListTaskController, :handle
   end
 
   scope "/docs" do
