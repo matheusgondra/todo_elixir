@@ -171,6 +171,14 @@
   "produces": [
     "application/json"
   ],
+  "securityDefinitions": {
+    "Bearer": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey",
+      "description": "JWT Token"
+    }
+  },
   "paths": {
     "/signin": {
       "post": {
@@ -283,13 +291,5 @@
       }
     }
   },
-  "swagger": "2.0",
-  "securityDefinitions": {
-    "Bearer": {
-      "in": "header",
-      "name": "Authorization",
-      "type": "apiKey",
-      "description": "JWT Token"
-    }
-  }
+  "swagger": "2.0"
 }

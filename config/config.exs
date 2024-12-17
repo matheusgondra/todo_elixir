@@ -17,7 +17,7 @@ config :todo, Todo.Repo,
 
 config :todo, TodoWeb.Auth.Guardian,
   issuer: "todo_app",
-  secret_key: System.get_env("JWT_SECRET_KEY", "secret")
+  secret_key: System.get_env("JWT_SECRET_KEY")
 
 config :todo, :phoenix_swagger,
   swagger_files: %{
