@@ -7,11 +7,21 @@ defmodule TodoWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug TodoWeb.Auth.Pipeline
+  end
+
   scope "/api", TodoWeb.Auth do
     pipe_through :api
 
     post "/signup", SignUpController, :handle
     post "/signin", SignInController, :handle
+  end
+
+  scope "/api", TodoWeb do
+    pipe_through [:api, :auth]
+
+    post "/tasks", Task.AddTaskController, :handle
   end
 
   scope "/docs" do

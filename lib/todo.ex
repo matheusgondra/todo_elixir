@@ -7,6 +7,7 @@ defmodule Todo do
   if it comes from the database, an external API or others.
   """
   alias Todo.Error
+  alias Todo.Tasks.Create, as: CreateTask
   alias Todo.Users.Create, as: UserCreate
   alias Todo.Users.User
   alias TodoWeb.Auth.Guardian
@@ -16,4 +17,7 @@ defmodule Todo do
 
   @spec login(map()) :: {:ok, String.t()} | {:error, Error.t()}
   defdelegate login(params), to: Guardian, as: :authenticate
+
+  @spec create_task(map()) :: {:ok, Task.t()} | {:error, Error.t()}
+  defdelegate create_task(params), to: CreateTask, as: :call
 end
