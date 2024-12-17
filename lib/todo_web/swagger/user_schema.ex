@@ -24,8 +24,8 @@ defmodule TodoWeb.Swagger.UserSchema do
   def user_example do
     %{
       id: "0bf45eb1-e00c-41d6-8fa3-0bcf85802823",
-      name: "Alice",
-      email: "alice@mail.com",
+      name: "John Doe",
+      email: "johndoe@mail.com",
       created_at: "2021-08-01T12:00:00Z",
       updated_at: "2021-08-01T12:00:00Z"
     }
@@ -42,6 +42,12 @@ defmodule TodoWeb.Swagger.UserSchema do
         email(:string, "User email address", required: true)
         password(:string, "User password", required: true)
       end
+
+      example(%{
+        name: "John Doe",
+        email: "johndoe@mail.com",
+        password: "password"
+      })
     end
   end
 end
