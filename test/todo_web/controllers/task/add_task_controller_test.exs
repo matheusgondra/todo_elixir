@@ -43,7 +43,7 @@ defmodule TodoWeb.Task.AddTaskControllerTest do
 
       expected_response = %{"message" => %{"title" => ["can't be blank"]}}
 
-      assert re == expected_response
+      assert response == expected_response
     end
   end
 end

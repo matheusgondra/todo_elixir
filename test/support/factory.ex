@@ -1,6 +1,7 @@
 defmodule Todo.Factory do
   use ExMachina.Ecto, repo: Todo.Repo
 
+  alias Todo.Tasks.Task
   alias Todo.Users.User
 
   def user_factory do
@@ -34,6 +35,17 @@ defmodule Todo.Factory do
     %{
       "title" => "any_title",
       "user_id" => Ecto.UUID.generate()
+    }
+  end
+
+  def task_factory do
+    %Task{
+      id: Ecto.UUID.generate(),
+      title: "any_title",
+      user_id: Ecto.UUID.generate(),
+      completed: false,
+      created_at: NaiveDateTime.utc_now(),
+      updated_at: NaiveDateTime.utc_now()
     }
   end
 end
