@@ -162,15 +162,40 @@
       ],
       "title": "TaskParams",
       "type": "object"
+    },
+    "TaskList": {
+      "description": "A list of tasks",
+      "example": {
+        "data": [
+          {
+            "created_at": "2021-08-01T12:00:00Z",
+            "id": "0bf45eb1-e00c-41d6-8fa3-0bcf85802823",
+            "title": "Buy groceries",
+            "updated_at": "2021-08-01T12:00:00Z"
+          },
+          {
+            "created_at": "2021-08-01T12:00:00Z",
+            "id": "0bf45eb1-e00c-41d6-8fa3-0bcf85802823",
+            "title": "Buy groceries",
+            "updated_at": "2021-08-01T12:00:00Z"
+          }
+        ],
+        "limit": 10,
+        "page": 1
+      },
+      "properties": {
+        "tasks": {
+          "description": "List of tasks",
+          "items": {
+            "$ref": "#/definitions/Task"
+          },
+          "type": "array"
+        }
+      },
+      "title": "TaskList",
+      "type": "object"
     }
   },
-  "basePath": "/api",
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
   "paths": {
     "/signin": {
       "post": {
@@ -243,6 +268,45 @@
       }
     },
     "/tasks": {
+      "get": {
+        "description": "List tasks",
+        "operationId": "TodoWeb.Task.ListTaskController.handle",
+        "parameters": [
+          {
+            "default": 1,
+            "description": "Page number",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Number of tasks per page",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of tasks",
+            "schema": {
+              "$ref": "#/definitions/TaskList"
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "List tasks",
+        "tags": [
+          "Tasks"
+        ]
+      },
       "post": {
         "description": "Create a task",
         "operationId": "TodoWeb.Task.AddTaskController.handle",
@@ -283,7 +347,13 @@
       }
     }
   },
-  "swagger": "2.0",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "basePath": "/api",
   "securityDefinitions": {
     "Bearer": {
       "in": "header",
@@ -291,5 +361,6 @@
       "type": "apiKey",
       "description": "JWT Token"
     }
-  }
+  },
+  "swagger": "2.0"
 }

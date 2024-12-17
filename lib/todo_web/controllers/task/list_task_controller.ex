@@ -1,10 +1,27 @@
 defmodule TodoWeb.Task.ListTaskController do
   use TodoWeb, :controller
+  use PhoenixSwagger
 
+  alias TodoWeb.Swagger.TaskSchema
   alias TodoWeb.FallbackController
   alias TodoWeb.Task.TaskJSON
 
   action_fallback FallbackController
+
+  swagger_path :handle do
+    get("/tasks")
+    summary("List tasks")
+    description("List tasks")
+    tag("Tasks")
+    security([%{Bearer: []}])
+
+    parameters do
+      page(:query, :integer, "Page number", default: 1)
+      limit(:query, :integer, "Number of tasks per page", default: 10)
+    end
+
+    response(200, "List of tasks", Schema.ref(:TaskList), example: TaskSchema.task_list_example())
+  end
 
   def handle(conn, %{"page" => page, "limit" => page_size}) do
     do_handle(conn, String.to_integer(page), String.to_integer(page_size))

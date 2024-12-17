@@ -21,7 +21,8 @@ defmodule TodoWeb.Swagger.SchemaDefinitions do
       SignIn: AuthSchema.sign_in_schema(),
       SignInParams: AuthSchema.sign_in_params_schema(),
       Task: TaskSchema.task_schema(),
-      TaskParams: TaskSchema.task_params_schema()
+      TaskParams: TaskSchema.task_params_schema(),
+      TaskList: TaskSchema.task_list_schema()
     }
   end
 end

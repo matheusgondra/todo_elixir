@@ -21,6 +21,19 @@ defmodule TodoWeb.Swagger.TaskSchema do
     end
   end
 
+  def task_list_schema do
+    swagger_schema do
+      title("TaskList")
+      description("A list of tasks")
+
+      properties do
+        tasks(:array, "List of tasks", items: Schema.ref(:Task))
+      end
+
+      example(task_list_example())
+    end
+  end
+
   @doc "An example task for use in documentation"
   def task_example do
     %{
@@ -28,6 +41,18 @@ defmodule TodoWeb.Swagger.TaskSchema do
       title: "Buy groceries",
       created_at: "2021-08-01T12:00:00Z",
       updated_at: "2021-08-01T12:00:00Z"
+    }
+  end
+
+  @doc "An example list of tasks for use in documentation"
+  def task_list_example do
+    %{
+      data: [
+        task_example(),
+        task_example()
+      ],
+      limit: 10,
+      page: 1
     }
   end
 
