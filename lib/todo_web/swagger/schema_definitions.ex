@@ -7,6 +7,7 @@ defmodule TodoWeb.Swagger.SchemaDefinitions do
 
   alias TodoWeb.Swagger.AuthSchema
   alias TodoWeb.Swagger.ErrorSchema
+  alias TodoWeb.Swagger.TaskSchema
   alias TodoWeb.Swagger.UserSchema
 
   @doc """
@@ -18,7 +19,9 @@ defmodule TodoWeb.Swagger.SchemaDefinitions do
       UserParams: UserSchema.user_params_schema(),
       Error: ErrorSchema.error_schema(),
       SignIn: AuthSchema.sign_in_schema(),
-      SignInParams: AuthSchema.sign_in_params_schema()
+      SignInParams: AuthSchema.sign_in_params_schema(),
+      Task: TaskSchema.task_schema(),
+      TaskParams: TaskSchema.task_params_schema()
     }
   end
 end

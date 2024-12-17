@@ -39,7 +39,15 @@ defmodule TodoWeb.Router do
       basePath: "/api",
       consumes: ["application/json"],
       produces: ["application/json"],
-      definitions: SchemaDefinitions.definitions()
+      definitions: SchemaDefinitions.definitions(),
+      securityDefinitions: %{
+        Bearer: %{
+          type: "apiKey",
+          name: "Authorization",
+          in: "header",
+          description: "JWT Token"
+        }
+      }
     }
   end
 

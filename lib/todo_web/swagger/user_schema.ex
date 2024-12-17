@@ -16,13 +16,7 @@ defmodule TodoWeb.Swagger.UserSchema do
         updated_at(:string, "The date and time the user was last updated")
       end
 
-      example(%{
-        id: "0bf45eb1-e00c-41d6-8fa3-0bcf85802823",
-        name: "Alice",
-        email: "alice@mail.com",
-        created_at: "2021-08-01T12:00:00Z",
-        updated_at: "2021-08-01T12:00:00Z"
-      })
+      example(user_example())
     end
   end
 
