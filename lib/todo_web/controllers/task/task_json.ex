@@ -13,6 +13,7 @@ defmodule TodoWeb.Task.TaskJSON do
     %{
       id: task.id,
       title: task.title,
+      completed: task.completed,
       created_at: task.created_at,
       updated_at: task.updated_at
     }
