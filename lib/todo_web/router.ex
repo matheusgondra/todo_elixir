@@ -11,6 +11,12 @@ defmodule TodoWeb.Router do
     plug TodoWeb.Auth.Pipeline
   end
 
+  scope "/", TodoWeb do
+    pipe_through :api
+
+    get "/", RedirectController, :handle
+  end
+
   scope "/api", TodoWeb.Auth do
     pipe_through :api
 
