@@ -30,6 +30,7 @@ defmodule TodoWeb.Router do
     post "/tasks", AddTaskController, :handle
     get "/tasks", ListTaskController, :handle
     patch "/tasks/:id/complete", CompleteTaskController, :handle
+    patch "/tasks/:id", UpdateTitleTaskController, :handle
   end
 
   scope "/docs" do
