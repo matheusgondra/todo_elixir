@@ -49,18 +49,38 @@
       "title": "ErrorResponse",
       "type": "object"
     },
-    "SignIn": {
-      "description": "Sign in a user",
+    "User": {
+      "description": "A user of the application",
       "example": {
-        "access_token": "token"
+        "created_at": "2021-08-01T12:00:00Z",
+        "email": "johndoe@mail.com",
+        "id": "0bf45eb1-e00c-41d6-8fa3-0bcf85802823",
+        "name": "John Doe",
+        "updated_at": "2021-08-01T12:00:00Z"
       },
       "properties": {
-        "access_token": {
-          "description": "Access token",
+        "created_at": {
+          "description": "The date and time the user was created",
+          "type": "string"
+        },
+        "email": {
+          "description": "The user's email address",
+          "type": "string"
+        },
+        "id": {
+          "description": "Unique identifier for the user",
+          "type": "string"
+        },
+        "name": {
+          "description": "The user's name",
+          "type": "string"
+        },
+        "updated_at": {
+          "description": "The date and time the user was last updated",
           "type": "string"
         }
       },
-      "title": "SignIn",
+      "title": "User",
       "type": "object"
     },
     "SignInParams": {
@@ -85,6 +105,63 @@
         "email"
       ],
       "title": "SignInParams",
+      "type": "object"
+    },
+    "SignIn": {
+      "description": "Sign in a user",
+      "example": {
+        "access_token": "token"
+      },
+      "properties": {
+        "access_token": {
+          "description": "Access token",
+          "type": "string"
+        }
+      },
+      "title": "SignIn",
+      "type": "object"
+    },
+    "UserParams": {
+      "description": "Parameters for creating a user",
+      "example": {
+        "email": "johndoe@mail.com",
+        "name": "John Doe",
+        "password": "password"
+      },
+      "properties": {
+        "email": {
+          "description": "User email address",
+          "type": "string"
+        },
+        "name": {
+          "description": "User name",
+          "type": "string"
+        },
+        "password": {
+          "description": "User password",
+          "type": "string"
+        }
+      },
+      "required": [
+        "password",
+        "email",
+        "name"
+      ],
+      "title": "UserParams",
+      "type": "object"
+    },
+    "TaskParams": {
+      "description": "Parameters for creating a task",
+      "properties": {
+        "title": {
+          "description": "Task title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "title": "TaskParams",
       "type": "object"
     },
     "TaskList": {
@@ -120,83 +197,21 @@
       },
       "title": "TaskList",
       "type": "object"
-    },
-    "TaskParams": {
-      "description": "Parameters for creating a task",
-      "properties": {
-        "title": {
-          "description": "Task title",
-          "type": "string"
-        }
-      },
-      "required": [
-        "title"
-      ],
-      "title": "TaskParams",
-      "type": "object"
-    },
-    "User": {
-      "description": "A user of the application",
-      "example": {
-        "created_at": "2021-08-01T12:00:00Z",
-        "email": "johndoe@mail.com",
-        "id": "0bf45eb1-e00c-41d6-8fa3-0bcf85802823",
-        "name": "John Doe",
-        "updated_at": "2021-08-01T12:00:00Z"
-      },
-      "properties": {
-        "created_at": {
-          "description": "The date and time the user was created",
-          "type": "string"
-        },
-        "email": {
-          "description": "The user's email address",
-          "type": "string"
-        },
-        "id": {
-          "description": "Unique identifier for the user",
-          "type": "string"
-        },
-        "name": {
-          "description": "The user's name",
-          "type": "string"
-        },
-        "updated_at": {
-          "description": "The date and time the user was last updated",
-          "type": "string"
-        }
-      },
-      "title": "User",
-      "type": "object"
-    },
-    "UserParams": {
-      "description": "Parameters for creating a user",
-      "example": {
-        "email": "johndoe@mail.com",
-        "name": "John Doe",
-        "password": "password"
-      },
-      "properties": {
-        "email": {
-          "description": "User email address",
-          "type": "string"
-        },
-        "name": {
-          "description": "User name",
-          "type": "string"
-        },
-        "password": {
-          "description": "User password",
-          "type": "string"
-        }
-      },
-      "required": [
-        "password",
-        "email",
-        "name"
-      ],
-      "title": "UserParams",
-      "type": "object"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "basePath": "/api",
+  "securityDefinitions": {
+    "Bearer": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey",
+      "description": "JWT Token"
     }
   },
   "paths": {
@@ -349,6 +364,59 @@
         ]
       }
     },
+    "/tasks/{id}": {
+      "patch": {
+        "description": "Update a task title",
+        "operationId": "TodoWeb.Task.UpdateTitleTaskController.handle",
+        "parameters": [
+          {
+            "description": "Task ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Task details",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TaskParams"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task updated",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Task not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Update a task title",
+        "tags": [
+          "Tasks"
+        ]
+      }
+    },
     "/tasks/{id}/complete": {
       "patch": {
         "description": "Complete a task",
@@ -394,20 +462,5 @@
       }
     }
   },
-  "swagger": "2.0",
-  "basePath": "/api",
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "securityDefinitions": {
-    "Bearer": {
-      "in": "header",
-      "name": "Authorization",
-      "type": "apiKey",
-      "description": "JWT Token"
-    }
-  }
+  "swagger": "2.0"
 }

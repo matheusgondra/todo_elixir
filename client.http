@@ -44,9 +44,9 @@ Authorization: {{token}}
 
 ###
 # @name update_task
-PATCH {{base_url}}/{{task_id}}
+PATCH {{base_url}}/tasks/{{task_id}}
 Content-Type: application/json
-Authorization {{token}}
+Authorization: {{token}}
 
 {
 	"title": "Task 1 Updated"

@@ -1,6 +1,6 @@
 defmodule TodoWeb.Task.CompleteTaskController do
-  use TodoWeb, :controller
   use PhoenixSwagger
+  use TodoWeb, :controller
 
   alias TodoWeb.FallbackController
   alias TodoWeb.Swagger.TaskSchema
