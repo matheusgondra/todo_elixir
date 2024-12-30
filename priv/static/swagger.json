@@ -8,6 +8,7 @@
     "Task": {
       "description": "A task in the application",
       "example": {
+        "completed": true,
         "created_at": "2021-08-01T12:00:00Z",
         "id": "0bf45eb1-e00c-41d6-8fa3-0bcf85802823",
         "title": "Buy groceries",
@@ -37,7 +38,7 @@
     "Error": {
       "description": "An error response from the API",
       "example": {
-        "message": "Invalid credentials"
+        "message": "Error message"
       },
       "properties": {
         "message": {
@@ -168,12 +169,14 @@
       "example": {
         "data": [
           {
+            "completed": true,
             "created_at": "2021-08-01T12:00:00Z",
             "id": "0bf45eb1-e00c-41d6-8fa3-0bcf85802823",
             "title": "Buy groceries",
             "updated_at": "2021-08-01T12:00:00Z"
           },
           {
+            "completed": true,
             "created_at": "2021-08-01T12:00:00Z",
             "id": "0bf45eb1-e00c-41d6-8fa3-0bcf85802823",
             "title": "Buy groceries",
@@ -356,6 +359,42 @@
           }
         ],
         "summary": "Create a task",
+        "tags": [
+          "Tasks"
+        ]
+      }
+    },
+    "/tasks/:id/complete": {
+      "patch": {
+        "description": "Complete a task",
+        "operationId": "TodoWeb.Task.CompleteTaskController.handle",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Task completed",
+            "schema": {
+              "$ref": "#/definitions/Task"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Task not found",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Complete a task",
         "tags": [
           "Tasks"
         ]

@@ -39,6 +39,7 @@ defmodule TodoWeb.Swagger.TaskSchema do
     %{
       id: "0bf45eb1-e00c-41d6-8fa3-0bcf85802823",
       title: "Buy groceries",
+      completed: true,
       created_at: "2021-08-01T12:00:00Z",
       updated_at: "2021-08-01T12:00:00Z"
     }

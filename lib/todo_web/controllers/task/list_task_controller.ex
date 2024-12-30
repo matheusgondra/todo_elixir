@@ -1,8 +1,7 @@
 defmodule TodoWeb.Task.ListTaskController do
-  use TodoWeb, :controller
   use PhoenixSwagger
+  use TodoWeb, :controller
 
-  alias TodoWeb.Swagger.TaskSchema
   alias TodoWeb.FallbackController
   alias TodoWeb.Task.TaskJSON
 
@@ -20,7 +19,7 @@ defmodule TodoWeb.Task.ListTaskController do
       limit(:query, :integer, "Number of tasks per page", default: 10)
     end
 
-    response(200, "List of tasks", Schema.ref(:TaskList), example: TaskSchema.task_list_example())
+    response(200, "List of tasks", Schema.ref(:TaskList))
   end
 
   def handle(conn, %{"page" => page, "limit" => page_size}) do

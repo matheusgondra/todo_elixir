@@ -23,9 +23,9 @@ defmodule TodoWeb.Swagger.ErrorSchema do
   @doc """
   An example error response
   """
-  def error_example do
+  def error_example() do
     %{
-      message: "Invalid credentials"
+      message: "Error message"
     }
   end
 end
