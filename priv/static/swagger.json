@@ -38,7 +38,7 @@
     "Error": {
       "description": "An error response from the API",
       "example": {
-        "message": "Error message"
+        "message": "Invalid Credentials"
       },
       "properties": {
         "message": {
@@ -364,11 +364,19 @@
         ]
       }
     },
-    "/tasks/:id/complete": {
+    "/tasks/{id}/complete": {
       "patch": {
         "description": "Complete a task",
         "operationId": "TodoWeb.Task.CompleteTaskController.handle",
-        "parameters": [],
+        "parameters": [
+          {
+            "description": "Task ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Task completed",

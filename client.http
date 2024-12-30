@@ -37,5 +37,5 @@ GET {{base_url}}/tasks?page=1
 Authorization: {{token}}
 
 ###
-PATCH {{base_url}}/tasks/{{task_id}}/complete
-Authorization: {{token}}
+PATCH {{base_url}}/tasks/fbf4724b-1fa1-4d0b-937a-577b64796588/complete
+Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ0b2RvX2FwcCIsImV4cCI6MTczNTU5MjEwMywiaWF0IjoxNzM1NTg0OTAzLCJpc3MiOiJ0b2RvX2FwcCIsImp0aSI6ImQ2ZGIxMmQ1LTg3NGQtNDRmYy04YjlmLWUxNDBhYWMxN2Q1OCIsIm5iZiI6MTczNTU4NDkwMiwic3ViIjoiMDljYWVkMjEtMTEyZC00NmRjLWIwOWEtZWVkMjk5NmFjZjUzIiwidHlwIjoiYWNjZXNzIn0.H-JGJvCKPbrsawcToLFonr3o9yWnFeZWWdMkK_2S0ez28ahC95u_XC-1xm2oyZFYDj62RxaNPISUtYTARgP6ew

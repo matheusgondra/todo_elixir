@@ -1,8 +1,10 @@
 defmodule TodoWeb.Auth.SignUpController do
-  use PhoenixSwagger
   use TodoWeb, :controller
+  use PhoenixSwagger
 
   alias TodoWeb.FallbackController
+  alias TodoWeb.Swagger.ErrorSchema
+  alias TodoWeb.Swagger.UserSchema
   alias TodoWeb.UserJSON
 
   action_fallback FallbackController
@@ -17,8 +19,8 @@ defmodule TodoWeb.Auth.SignUpController do
       body(:body, Schema.ref(:UserParams), "User parameters", required: true)
     end
 
-    response(201, "User created", Schema.ref(:User))
-    response(400, "Bad request", Schema.ref(:Error))
+    response(201, "User created", Schema.ref(:User), example: UserSchema.user_example())
+    response(400, "Bad request", Schema.ref(:Error), example: ErrorSchema.error_example())
   end
 
   def handle(conn, params) do

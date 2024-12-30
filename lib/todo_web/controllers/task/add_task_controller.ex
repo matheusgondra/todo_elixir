@@ -1,10 +1,12 @@
 defmodule TodoWeb.Task.AddTaskController do
-  use PhoenixSwagger
   use TodoWeb, :controller
+  use PhoenixSwagger
 
   alias Guardian.Plug
   alias Todo.Tasks.Task
   alias TodoWeb.FallbackController
+  alias TodoWeb.Swagger.ErrorSchema
+  alias TodoWeb.Swagger.TaskSchema
   alias TodoWeb.Task.TaskJSON
 
   action_fallback FallbackController
@@ -20,8 +22,8 @@ defmodule TodoWeb.Task.AddTaskController do
       body(:body, Schema.ref(:TaskParams), "Task details", required: true)
     end
 
-    response(201, "Task created", Schema.ref(:Task))
-    response(401, "Unauthorized", Schema.ref(:Error))
+    response(201, "Task created", Schema.ref(:Task), example: TaskSchema.task_example())
+    response(401, "Unauthorized", Schema.ref(:Error), example: ErrorSchema.error_example())
   end
 
   def handle(conn, params) do

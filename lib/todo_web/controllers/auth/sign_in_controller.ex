@@ -1,7 +1,9 @@
 defmodule TodoWeb.Auth.SignInController do
-  use PhoenixSwagger
   use TodoWeb, :controller
+  use PhoenixSwagger
 
+  alias TodoWeb.Swagger.AuthSchema
+  alias TodoWeb.Swagger.ErrorSchema
   alias TodoWeb.FallbackController
 
   action_fallback FallbackController
@@ -16,8 +18,8 @@ defmodule TodoWeb.Auth.SignInController do
       body(:body, Schema.ref(:SignInParams), "User credentials", required: true)
     end
 
-    response(200, "User signed in", Schema.ref(:SignIn))
-    response(401, "Unauthorized", Schema.ref(:Error))
+    response(200, "User signed in", Schema.ref(:SignIn), example: AuthSchema.sign_in_example())
+    response(401, "Unauthorized", Schema.ref(:Error), example: ErrorSchema.error_example())
   end
 
   def handle(conn, params) do
