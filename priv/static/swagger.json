@@ -49,38 +49,18 @@
       "title": "ErrorResponse",
       "type": "object"
     },
-    "User": {
-      "description": "A user of the application",
+    "SignIn": {
+      "description": "Sign in a user",
       "example": {
-        "created_at": "2021-08-01T12:00:00Z",
-        "email": "johndoe@mail.com",
-        "id": "0bf45eb1-e00c-41d6-8fa3-0bcf85802823",
-        "name": "John Doe",
-        "updated_at": "2021-08-01T12:00:00Z"
+        "access_token": "token"
       },
       "properties": {
-        "created_at": {
-          "description": "The date and time the user was created",
-          "type": "string"
-        },
-        "email": {
-          "description": "The user's email address",
-          "type": "string"
-        },
-        "id": {
-          "description": "Unique identifier for the user",
-          "type": "string"
-        },
-        "name": {
-          "description": "The user's name",
-          "type": "string"
-        },
-        "updated_at": {
-          "description": "The date and time the user was last updated",
+        "access_token": {
+          "description": "Access token",
           "type": "string"
         }
       },
-      "title": "User",
+      "title": "SignIn",
       "type": "object"
     },
     "SignInParams": {
@@ -105,63 +85,6 @@
         "email"
       ],
       "title": "SignInParams",
-      "type": "object"
-    },
-    "SignIn": {
-      "description": "Sign in a user",
-      "example": {
-        "access_token": "token"
-      },
-      "properties": {
-        "access_token": {
-          "description": "Access token",
-          "type": "string"
-        }
-      },
-      "title": "SignIn",
-      "type": "object"
-    },
-    "UserParams": {
-      "description": "Parameters for creating a user",
-      "example": {
-        "email": "johndoe@mail.com",
-        "name": "John Doe",
-        "password": "password"
-      },
-      "properties": {
-        "email": {
-          "description": "User email address",
-          "type": "string"
-        },
-        "name": {
-          "description": "User name",
-          "type": "string"
-        },
-        "password": {
-          "description": "User password",
-          "type": "string"
-        }
-      },
-      "required": [
-        "password",
-        "email",
-        "name"
-      ],
-      "title": "UserParams",
-      "type": "object"
-    },
-    "TaskParams": {
-      "description": "Parameters for creating a task",
-      "properties": {
-        "title": {
-          "description": "Task title",
-          "type": "string"
-        }
-      },
-      "required": [
-        "title"
-      ],
-      "title": "TaskParams",
       "type": "object"
     },
     "TaskList": {
@@ -197,21 +120,83 @@
       },
       "title": "TaskList",
       "type": "object"
-    }
-  },
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "basePath": "/api",
-  "securityDefinitions": {
-    "Bearer": {
-      "in": "header",
-      "name": "Authorization",
-      "type": "apiKey",
-      "description": "JWT Token"
+    },
+    "TaskParams": {
+      "description": "Parameters for creating a task",
+      "properties": {
+        "title": {
+          "description": "Task title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "title": "TaskParams",
+      "type": "object"
+    },
+    "User": {
+      "description": "A user of the application",
+      "example": {
+        "created_at": "2021-08-01T12:00:00Z",
+        "email": "johndoe@mail.com",
+        "id": "0bf45eb1-e00c-41d6-8fa3-0bcf85802823",
+        "name": "John Doe",
+        "updated_at": "2021-08-01T12:00:00Z"
+      },
+      "properties": {
+        "created_at": {
+          "description": "The date and time the user was created",
+          "type": "string"
+        },
+        "email": {
+          "description": "The user's email address",
+          "type": "string"
+        },
+        "id": {
+          "description": "Unique identifier for the user",
+          "type": "string"
+        },
+        "name": {
+          "description": "The user's name",
+          "type": "string"
+        },
+        "updated_at": {
+          "description": "The date and time the user was last updated",
+          "type": "string"
+        }
+      },
+      "title": "User",
+      "type": "object"
+    },
+    "UserParams": {
+      "description": "Parameters for creating a user",
+      "example": {
+        "email": "johndoe@mail.com",
+        "name": "John Doe",
+        "password": "password"
+      },
+      "properties": {
+        "email": {
+          "description": "User email address",
+          "type": "string"
+        },
+        "name": {
+          "description": "User name",
+          "type": "string"
+        },
+        "password": {
+          "description": "User password",
+          "type": "string"
+        }
+      },
+      "required": [
+        "password",
+        "email",
+        "name"
+      ],
+      "title": "UserParams",
+      "type": "object"
     }
   },
   "paths": {
@@ -409,5 +394,20 @@
       }
     }
   },
-  "swagger": "2.0"
+  "swagger": "2.0",
+  "basePath": "/api",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey",
+      "description": "JWT Token"
+    }
+  }
 }
