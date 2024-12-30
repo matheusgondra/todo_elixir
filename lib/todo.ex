@@ -1,14 +1,11 @@
 defmodule Todo do
   @moduledoc """
-  Todo keeps the contexts that define your domain
-  and business logic.
-
-  Contexts are also responsible for managing your data, regardless
-  if it comes from the database, an external API or others.
+  The Todo module is a facade that provides a single entry point to the
   """
   alias Todo.Error
   alias Todo.Tasks.Create, as: CreateTask
   alias Todo.Tasks.GetByPage
+  alias Todo.Tasks.Update, as: UpdateTask
   alias Todo.Users.Create, as: UserCreate
   alias Todo.Users.User
   alias TodoWeb.Auth.Guardian
@@ -23,5 +20,8 @@ defmodule Todo do
   defdelegate create_task(params), to: CreateTask, as: :call
 
   @spec list_tasks(pos_integer(), pos_integer()) :: list(Task.t())
-  defdelegate list_tasks(page, pige_size), to: GetByPage, as: :call
+  defdelegate list_tasks(page, page_size), to: GetByPage, as: :call
+
+  @spec update_task(map()) :: {:ok, Task.t()} | {:error, Error.t()}
+  defdelegate update_task(params), to: UpdateTask, as: :call
 end

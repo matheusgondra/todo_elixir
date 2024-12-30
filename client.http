@@ -1,5 +1,6 @@
 @base_url = http://localhost:4000/api
 @token = Bearer {{login.response.body.access_token}}
+@task_id = {{create_task.response.body.id}}
 
 # @name signup
 POST {{base_url}}/signup
@@ -33,4 +34,8 @@ Authorization: {{token}}
 ###
 
 GET {{base_url}}/tasks?page=1
+Authorization: {{token}}
+
+###
+PATCH {{base_url}}/tasks/{{task_id}}/complete
 Authorization: {{token}}

@@ -16,4 +16,7 @@ defmodule Todo.Error do
 
   @spec build_user_not_found() :: t()
   def build_user_not_found, do: build(:not_found, "User not found")
+
+  @spec build_task_not_found() :: t()
+  def build_task_not_found, do: build(:not_found, "Task not found")
 end

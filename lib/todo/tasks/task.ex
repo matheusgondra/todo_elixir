@@ -9,6 +9,7 @@ defmodule Todo.Tasks.Task do
   @foreign_key_type :binary_id
 
   @required_fields [:title, :user_id]
+  @updated_fields [:title, :completed]
 
   @type t() :: %__MODULE__{
           id: String.t(),
@@ -32,7 +33,18 @@ defmodule Todo.Tasks.Task do
   def changeset(params) do
     %__MODULE__{}
     |> cast(params, @required_fields)
-    |> validate_required(@required_fields)
+    |> do_validations(@required_fields)
+  end
+
+  def changeset(task, params) do
+    task
+    |> cast(params, @updated_fields)
+    |> do_validations(@updated_fields)
+  end
+
+  defp do_validations(changeset, fields) do
+    changeset
+    |> validate_required(fields)
     |> validate_length(:title, min: 5)
   end
 end
