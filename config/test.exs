@@ -9,7 +9,7 @@ config :todo, Todo.Repo,
   username: System.get_env("DB_USER") || "dev",
   password: System.get_env("DB_PASSWORD") || "dev",
   hostname: System.get_env("DB_HOST") || "localhost",
-  database: System.get("DB_NAME") || "todo_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: System.get_env("DB_NAME") || "todo_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: System.schedulers_online() * 2
 
