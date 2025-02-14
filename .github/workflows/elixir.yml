@@ -64,3 +64,11 @@ jobs:
 
       - name: Run tests
         run: mix test
+
+      - name: Revert commit on failure
+        if: failure()
+        run: |
+          git reset --hard HEAD~1
+          git push origin teste-ci --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
