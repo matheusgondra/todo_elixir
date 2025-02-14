@@ -14,6 +14,13 @@ jobs:
     name: Build and test
     runs-on: ubuntu-22.04
 
+    env:
+      MIX_ENV: test
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: localhost
+      DB_NAME: todo_test
+
     services:
       db:
         image: postgres:15
@@ -54,12 +61,6 @@ jobs:
         run: |
           mix ecto.create
           mix ecto.migrate
-        env:
-          MIX_ENV: test
-          DB_USER: postgres
-          DB_PASSWORD: postgres
-          DB_HOST: localhost
-          DB_NAME: todo_test
 
       - name: Run tests
         run: mix test
