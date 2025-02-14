@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :todo, Todo.Repo,
-  username: "dev",
-  password: "admin",
-  hostname: "localhost",
-  database: "todo_dev",
+  username: System.get_env("DB_USER") || "dev",
+  password: System.get_env("DB_PASSWORD") || "dev",
+  hostname: System.get_env("DB_HOST") || "localhost",
+  database: System.get_env("DB_NAME") || "todo_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
