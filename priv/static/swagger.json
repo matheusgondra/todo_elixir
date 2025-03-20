@@ -49,6 +49,35 @@
       "title": "ErrorResponse",
       "type": "object"
     },
+    "UserParams": {
+      "description": "Parameters for creating a user",
+      "example": {
+        "email": "johndoe@mail.com",
+        "name": "John Doe",
+        "password": "password"
+      },
+      "properties": {
+        "email": {
+          "description": "User email address",
+          "type": "string"
+        },
+        "name": {
+          "description": "User name",
+          "type": "string"
+        },
+        "password": {
+          "description": "User password",
+          "type": "string"
+        }
+      },
+      "required": [
+        "password",
+        "email",
+        "name"
+      ],
+      "title": "UserParams",
+      "type": "object"
+    },
     "User": {
       "description": "A user of the application",
       "example": {
@@ -121,35 +150,6 @@
       "title": "SignIn",
       "type": "object"
     },
-    "UserParams": {
-      "description": "Parameters for creating a user",
-      "example": {
-        "email": "johndoe@mail.com",
-        "name": "John Doe",
-        "password": "password"
-      },
-      "properties": {
-        "email": {
-          "description": "User email address",
-          "type": "string"
-        },
-        "name": {
-          "description": "User name",
-          "type": "string"
-        },
-        "password": {
-          "description": "User password",
-          "type": "string"
-        }
-      },
-      "required": [
-        "password",
-        "email",
-        "name"
-      ],
-      "title": "UserParams",
-      "type": "object"
-    },
     "TaskParams": {
       "description": "Parameters for creating a task",
       "properties": {
@@ -199,13 +199,13 @@
       "type": "object"
     }
   },
+  "basePath": "/api",
   "consumes": [
     "application/json"
   ],
   "produces": [
     "application/json"
   ],
-  "basePath": "/api",
   "securityDefinitions": {
     "Bearer": {
       "in": "header",
