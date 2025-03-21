@@ -56,7 +56,8 @@ defmodule TodoWeb.Router do
           in: "header",
           description: "JWT Token"
         }
-      }
+      },
+      schemes: ["http"]
     }
   end
 
