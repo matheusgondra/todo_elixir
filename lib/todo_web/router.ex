@@ -20,7 +20,7 @@ defmodule TodoWeb.Router do
     plug TodoWeb.Auth.Pipeline
   end
 
-  scope "/", TodoWeb do
+  scope "/api", TodoWeb do
     pipe_through :api
 
     get "/", RedirectController, :handle
@@ -42,7 +42,7 @@ defmodule TodoWeb.Router do
     patch "/tasks/:id", UpdateTitleTaskController, :handle
   end
 
-  scope "/docs" do
+  scope "/api/docs" do
     forward "/", PhoenixSwagger.Plug.SwaggerUI,
       otp_app: :todo,
       swagger_file: "swagger.json"
