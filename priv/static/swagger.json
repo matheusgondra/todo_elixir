@@ -199,24 +199,6 @@
       "type": "object"
     }
   },
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
-  "basePath": "/api",
-  "securityDefinitions": {
-    "Bearer": {
-      "in": "header",
-      "name": "Authorization",
-      "type": "apiKey",
-      "description": "JWT Token"
-    }
-  },
-  "schemes": [
-    "http"
-  ],
   "paths": {
     "/signin": {
       "post": {
@@ -465,5 +447,23 @@
       }
     }
   },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "basePath": "/api",
+  "securityDefinitions": {
+    "Bearer": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey",
+      "description": "JWT Token"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
   "swagger": "2.0"
 }
