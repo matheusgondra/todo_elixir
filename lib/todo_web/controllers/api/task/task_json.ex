@@ -1,4 +1,4 @@
-defmodule TodoWeb.Task.TaskJSON do
+defmodule TodoWeb.Api.Task.TaskJSON do
   def show(%{task: task}), do: data(task)
 
   def page(%{tasks: tasks, page: page, limit: limit}) do

@@ -26,14 +26,14 @@ defmodule TodoWeb.Router do
     get "/", RedirectController, :handle
   end
 
-  scope "/api", TodoWeb.Auth do
+  scope "/api", TodoWeb.Api.Auth do
     pipe_through :api
 
     post "/signup", SignUpController, :handle
     post "/signin", SignInController, :handle
   end
 
-  scope "/api", TodoWeb.Task do
+  scope "/api", TodoWeb.Api.Task do
     pipe_through [:api, :auth]
 
     post "/tasks", AddTaskController, :handle

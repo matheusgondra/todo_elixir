@@ -1,4 +1,4 @@
-defmodule TodoWeb.Auth.SignInController do
+defmodule TodoWeb.Api.Auth.SignInController do
   use TodoWeb, :controller
   use PhoenixSwagger
 

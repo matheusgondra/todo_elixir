@@ -1,10 +1,10 @@
-defmodule TodoWeb.Task.ListTaskController do
+defmodule TodoWeb.Api.Task.ListTaskController do
   use TodoWeb, :controller
   use PhoenixSwagger
 
-  alias TodoWeb.Swagger.TaskSchema
+  alias TodoWeb.Api.Task.TaskJSON
   alias TodoWeb.FallbackController
-  alias TodoWeb.Task.TaskJSON
+  alias TodoWeb.Swagger.TaskSchema
 
   action_fallback FallbackController
 
