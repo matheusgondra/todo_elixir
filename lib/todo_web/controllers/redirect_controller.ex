@@ -4,6 +4,6 @@ defmodule TodoWeb.RedirectController do
   def handle(conn, _params) do
     conn
     |> put_status(301)
-    |> redirect(to: "/docs")
+    |> redirect(to: "/api/docs")
   end
 end

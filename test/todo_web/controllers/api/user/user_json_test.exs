@@ -1,9 +1,9 @@
-defmodule TodoWeb.User.UserJsonTest do
+defmodule TodoWeb.Api.User.UserJSONTest do
   use TodoWeb.ConnCase, async: true
 
   import Todo.Factory
 
-  alias TodoWeb.UserJSON
+  alias TodoWeb.Api.UserJSON
 
   describe "show/1" do
     test "returns a user" do

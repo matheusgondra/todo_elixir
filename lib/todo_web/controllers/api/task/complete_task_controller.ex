@@ -1,28 +1,24 @@
-defmodule TodoWeb.Task.UpdateTitleTaskController do
+defmodule TodoWeb.Api.Task.CompleteTaskController do
   use PhoenixSwagger
   use TodoWeb, :controller
 
+  alias TodoWeb.Api.Task.TaskJSON
   alias TodoWeb.FallbackController
-  alias TodoWeb.Swagger.ErrorSchema
   alias TodoWeb.Swagger.TaskSchema
-  alias TodoWeb.Task.TaskJSON
+  alias TodoWeb.Swagger.ErrorSchema
 
   action_fallback FallbackController
 
   swagger_path :handle do
-    patch("/tasks/{id}")
-    summary("Update a task title")
-    description("Update a task title")
+    patch("/tasks/{id}/complete")
+    summary("Complete a task")
+    description("Complete a task")
     tag("Tasks")
     security([%{Bearer: []}])
 
     parameter(:id, :path, :string, "Task ID", required: true)
 
-    parameters do
-      body(:body, Schema.ref(:TaskParams), "Task details", required: true)
-    end
-
-    response(200, "Task updated", Schema.ref(:Task), example: TaskSchema.task_example())
+    response(200, "Task completed", Schema.ref(:Task), example: TaskSchema.task_example())
     response(401, "Unauthorized", Schema.ref(:Error), example: ErrorSchema.error_example())
 
     response(404, "Task not found", Schema.ref(:Error),
@@ -30,8 +26,8 @@ defmodule TodoWeb.Task.UpdateTitleTaskController do
     )
   end
 
-  def handle(conn, params) do
-    with {:ok, task} <- Todo.update_task(params) do
+  def handle(conn, %{"id" => id}) do
+    with {:ok, task} <- Todo.update_task(%{"id" => id, "completed" => true}) do
       conn
       |> put_status(:ok)
       |> put_view(TaskJSON)

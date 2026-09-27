@@ -26,7 +26,10 @@ config :todo, TodoWeb.Endpoint,
   code_reloader: true,
   debug_errors: true,
   secret_key_base: "e0/U5i5B2B/ZwrtVWpaEYcyMNVoU/Uwc2iaJT+pjNS+O38ExkoFXQW4asG6yyzQG",
-  watchers: []
+  watchers: [
+    esbuild: {Esbuild, :install_and_run, [:todo, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:todo, ~w(--watch)]}
+  ]
 
 # ## SSL Support
 #
@@ -51,6 +54,15 @@ config :todo, TodoWeb.Endpoint,
 # configured to run both http and https servers on
 # different ports.
 
+# Watch static and templates for browser reloading.
+config :todo, TodoWeb.Endpoint,
+  live_reload: [
+    patterns: [
+      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"lib/todo_web/(controllers|live|components)/.*(ex|heex)$"
+    ]
+  ]
+
 # Enable dev routes for dashboard and mailbox
 config :todo, dev_routes: true
 
@@ -63,3 +75,9 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :phoenix_live_view,
+  # Include HEEx debug annotations as HTML comments in rendered markup
+  debug_heex_annotations: true,
+  # Enable helpful, but potentially expensive runtime checks
+  enable_expensive_runtime_checks: true

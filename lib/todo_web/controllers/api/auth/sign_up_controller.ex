@@ -1,11 +1,11 @@
-defmodule TodoWeb.Auth.SignUpController do
+defmodule TodoWeb.Api.Auth.SignUpController do
   use TodoWeb, :controller
   use PhoenixSwagger
 
+  alias TodoWeb.Api.UserJSON
   alias TodoWeb.FallbackController
   alias TodoWeb.Swagger.ErrorSchema
   alias TodoWeb.Swagger.UserSchema
-  alias TodoWeb.UserJSON
 
   action_fallback FallbackController
 

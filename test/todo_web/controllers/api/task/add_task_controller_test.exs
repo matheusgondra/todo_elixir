@@ -1,4 +1,4 @@
-defmodule TodoWeb.Task.AddTaskControllerTest do
+defmodule TodoWeb.Api.Task.AddTaskControllerTest do
   use TodoWeb.ConnCase, async: true
 
   import Todo.Factory

@@ -1,4 +1,4 @@
-defmodule TodoWeb.Auth.SignUpControllerTest do
+defmodule TodoWeb.Api.Auth.SignUpControllerTest do
   use TodoWeb.ConnCase, async: true
 
   import Todo.Factory

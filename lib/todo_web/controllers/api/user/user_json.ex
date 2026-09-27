@@ -1,4 +1,4 @@
-defmodule TodoWeb.UserJSON do
+defmodule TodoWeb.Api.UserJSON do
   def show(%{user: user}) do
     %{
       id: user.id,

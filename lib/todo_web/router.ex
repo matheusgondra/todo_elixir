@@ -3,6 +3,15 @@ defmodule TodoWeb.Router do
 
   alias TodoWeb.Swagger.SchemaDefinitions
 
+  pipeline :browser do
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_live_flash
+    plug :put_root_layout, html: {TodoWeb.Layouts, :root}
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -11,20 +20,20 @@ defmodule TodoWeb.Router do
     plug TodoWeb.Auth.Pipeline
   end
 
-  scope "/", TodoWeb do
+  scope "/api", TodoWeb do
     pipe_through :api
 
     get "/", RedirectController, :handle
   end
 
-  scope "/api", TodoWeb.Auth do
+  scope "/api", TodoWeb.Api.Auth do
     pipe_through :api
 
     post "/signup", SignUpController, :handle
     post "/signin", SignInController, :handle
   end
 
-  scope "/api", TodoWeb.Task do
+  scope "/api", TodoWeb.Api.Task do
     pipe_through [:api, :auth]
 
     post "/tasks", AddTaskController, :handle
@@ -33,7 +42,7 @@ defmodule TodoWeb.Router do
     patch "/tasks/:id", UpdateTitleTaskController, :handle
   end
 
-  scope "/docs" do
+  scope "/api/docs" do
     forward "/", PhoenixSwagger.Plug.SwaggerUI,
       otp_app: :todo,
       swagger_file: "swagger.json"
@@ -56,7 +65,8 @@ defmodule TodoWeb.Router do
           in: "header",
           description: "JWT Token"
         }
-      }
+      },
+      schemes: ["http"]
     }
   end
 
