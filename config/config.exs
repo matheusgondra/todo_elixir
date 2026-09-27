@@ -15,6 +15,8 @@ config :todo, Todo.Repo,
   migration_primary_key: [type: :binary_id],
   migration_timestamps: [inserted_at: :created_at]
 
+config :pbkdf2_elixir, rounds: 12
+
 config :todo, TodoWeb.Auth.Guardian,
   issuer: "todo_app",
   secret_key: System.get_env("JWT_SECRET_KEY")
