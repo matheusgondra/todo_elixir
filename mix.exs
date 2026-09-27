@@ -58,7 +58,7 @@ defmodule Todo.MixProject do
       {:bandit, "~> 1.5"},
       {:pbkdf2_elixir, "~> 2.0"},
       {:guardian, "~> 2.0"},
-      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
+      {:mix_test_watch, "~> 1.4", only: :dev, runtime: false},
       {:ex_machina, "~> 2.8.0", only: :test},
       {:phoenix_swagger, "~> 0.8"},
       {:ex_json_schema, "~> 0.5"}
