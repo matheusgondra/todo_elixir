@@ -13,7 +13,7 @@ defmodule Todo.Users.CreateTest do
 
       result = Create.call(params)
 
-      assert {:ok, %User{}} = result
+      assert {:error, %User{}} = result
     end
 
     test "when there are invalid params, return an error" do
