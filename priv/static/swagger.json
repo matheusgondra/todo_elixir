@@ -447,10 +447,6 @@
       }
     }
   },
-  "swagger": "2.0",
-  "schemes": [
-    "http"
-  ],
   "consumes": [
     "application/json"
   ],
@@ -465,5 +461,9 @@
       "type": "apiKey",
       "description": "JWT Token"
     }
-  }
+  },
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0"
 }
