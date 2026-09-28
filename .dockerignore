@@ -1,0 +1,9 @@
+.git
+.github
+_build
+deps
+cover
+doc
+tmp
+erl_crash.dump
+priv/static/swagger.json
