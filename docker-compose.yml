@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: todo-elixir-db
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: todo_dev
+    ports:
+      - "54320:5432"
+  
+  api:
+    build: .
+    container_name: todo-elixir-app
+    environment:
+      DATABASE_URL: ecto://dev:dev@db:5432/todo_dev
+      JWT_SECRET_KEY: gfhnqaçioufvbiu@1o423utrnoi2
+      SECRET_KEY_BASE: sxDMJdWyZUke+XLt0SGphNHmML8o/rhMsVCUsy3CZuaJhAUx4d4NlDrKmvCu7SD+
+      MIX_ENV: prod
+      PORT: 4000
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+
