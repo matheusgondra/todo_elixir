@@ -26,3 +26,6 @@ erl_crash.dump
 todo-*.tar
 
 priv/static/swagger.json
+priv/static/assets/app.js
+
+.env
